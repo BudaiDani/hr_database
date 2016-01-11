@@ -1,5 +1,9 @@
 # hr_database
 
+This is the EER model of the task:
+
+http://www.w3resource.com/mysql-exercises/database-model.gif
+
 Basic select
 
 1. Write a query to get unique department ID from employee table.
