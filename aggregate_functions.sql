@@ -1,0 +1,41 @@
+USE hr_db;
+
+#1
+SELECT jobs.JOB_TITLE, COUNT(employees.EMPLOYEE_ID) AS WORKERS
+FROM jobs
+LEFT JOIN employees
+ON employees.JOB_ID = jobs.JOB_ID
+GROUP BY JOB_TITLE;
+
+#2
+SELECT employees.MANAGER_ID, employees.FIRST_NAME, employees.LAST_NAME, MIN(SALARY)
+FROM employees
+LEFT JOIN departments
+ON departments.MANAGER_ID = employees.MANAGER_ID
+GROUP BY MANAGER_ID;
+
+#3
+SELECT departments.DEPARTMENT_ID, departments.DEPARTMENT_NAME, SUM(SALARY)
+FROM departments
+LEFT JOIN employees
+ON employees.DEPARTMENT_ID = departments.DEPARTMENT_ID
+GROUP BY DEPARTMENT_ID;
+
+#4
+SELECT employees.JOB_ID, jobs.JOB_TITLE, AVG(employees.SALARY)
+FROM employees
+LEFT JOIN jobs
+ON jobs.JOB_ID = employees.JOB_ID
+WHERE JOB_TITLE != 'Programmer'
+GROUP BY JOB_ID;
+
+#5
+SELECT JOB_ID, MAX(SALARY)
+FROM employees
+HAVING MAX(SALARY) >= 4000;
+
+#6
+SELECT DEPARTMENT_ID, COUNT(EMPLOYEE_ID), AVG(SALARY)
+FROM employees
+GROUP BY DEPARTMENT_ID
+HAVING COUNT(EMPLOYEE_ID) >= 10;
